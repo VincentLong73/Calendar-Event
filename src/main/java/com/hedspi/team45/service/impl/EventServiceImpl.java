@@ -1,11 +1,11 @@
 package com.hedspi.team45.service.impl;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hedspi.team45.domain.Event;
+import com.hedspi.team45.entity.Event;
 import com.hedspi.team45.repository.EventRepository;
 import com.hedspi.team45.service.EventService;
 
@@ -16,7 +16,7 @@ public class EventServiceImpl implements EventService{
 	private EventRepository eventRepository;
 
 	@Override
-	public void createEvent(Event event) {
+	public Event createEvent(Event event) {
 		Event e = new Event();
         e.setStart(event.getStart());
         e.setEnd(event.getEnd());
@@ -24,6 +24,7 @@ public class EventServiceImpl implements EventService{
         e.setColor(event.getColor());
 
         eventRepository.save(e);
+        return e;
 	}
 
 	@Override
@@ -42,9 +43,17 @@ public class EventServiceImpl implements EventService{
 	}
 
 	@Override
-	public Iterable<Event> findBetween(Calendar start, Calendar end) {
+	public Iterable<Event> findBetween(LocalDateTime start, LocalDateTime end) {
 		
 		return eventRepository.findBetween(start, end);
+	}
+
+	@Override
+	public void updateEvent(Event event) {
+		Event updateE = eventRepository.getOne(event.getId());
+		updateE.setStart(event.getStart());
+		updateE.setEnd(event.getEnd());
+		eventRepository.saveAndFlush(updateE);
 	}
 	
 	
