@@ -1,7 +1,7 @@
-package com.hedspi.team45.domain;
+package com.hedspi.team45.entity;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,10 +34,10 @@ public class Event implements Serializable {
 	private String text;
 	
 	@Column(name="start")
-	private Calendar start;
+	private LocalDateTime start;
 	
 	@Column(name="end")
-	private Calendar end;
+	private LocalDateTime end;
 	
 	@Column(name="color")
 	private String color;
