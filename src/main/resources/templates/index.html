@@ -7,8 +7,19 @@
 
 <link rel="stylesheet" type="text/css" href="@{/css/main.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/icons/style.css}">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
 </head>
 <body>
+<header>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand ml-3" href="#">Calendar-Event</a>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" formaction="/login.html">Login</button>
+    </form>
+</nav>
+</header>
 
 	<div class="main" style="display: flex;">
 		<div style="margin-right: 10px;">
@@ -30,7 +41,7 @@
 		nav.onTimeRangeSelected = function(args) {
 			dp.startDate = args.day;
 			dp.update();
-			dp.events.load("http://localhost:9090/api/events");
+			dp.events.load("http://localhost:8282/api/events");
 		};
 		nav.init();
 
@@ -52,7 +63,7 @@
 							text : modal.result
 						};
 						DayPilot.Http.ajax({
-							url : 'http://localhost:9090/api/events/create',
+							url : 'http://localhost:8282/api/events/create',
 							data : params,
 							success : function(ajax) {
 								var data = ajax.data;
@@ -76,7 +87,7 @@
 						id : args.e.id()
 					};
 					DayPilot.Http.ajax({
-						url : 'http://localhost:9090/api/events/move',
+						url : 'http://localhost:8282/api/events/move',
 						data : params,
 						success : function(ajax) {
 							dp.message("Event deleted");
@@ -93,7 +104,7 @@
 				end : args.newEnd.toString()
 			};
 			DayPilot.Http.ajax({
-				url : 'http://localhost:9090/api/events/update',
+				url : 'http://localhost:8282/api/events/update',
 				data : params,
 				success : function(ajax) {
 					dp.message("Event moved");
@@ -109,7 +120,7 @@
 				end : args.newEnd.toString()
 			};
 			DayPilot.Http.ajax({
-				url : 'http://localhost:9090/api/events/update',
+				url : 'http://localhost:8282/api/events/update',
 				data : params,
 				success : function(ajax) {
 					dp.message("Event resized");
@@ -172,7 +183,7 @@
 				color : color
 			};
 			DayPilot.Http.ajax({
-				url : 'http://localhost:9090/api/events/setColor',
+				url : 'http://localhost:8282/api/events/setColor',
 				data : params,
 				success : function(ajax) {
 					e.data.color = color;
@@ -182,6 +193,6 @@
 			});
 		}
 	</script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 </html>
