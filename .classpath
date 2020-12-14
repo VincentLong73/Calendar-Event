@@ -28,5 +28,14 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="E:/eclipse-jee-2019-12-R-win32-x86_64/eclipse/Users/LongNguyen/.m2/com/nimbusds/nimbus-jose-jwt/4.20/nimbus-jose-jwt-4.20.jar" sourcepath="E:/eclipse-jee-2019-12-R-win32-x86_64/eclipse/Users/LongNguyen/.m2/com/nimbusds/nimbus-jose-jwt/4.20/nimbus-jose-jwt-4.20-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.nimbusds"/>
+			<attribute name="maven.artifactId" value="nimbus-jose-jwt"/>
+			<attribute name="maven.version" value="4.20"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
