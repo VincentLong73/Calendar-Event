@@ -1,0 +1,20 @@
+.banner {
+    position: relative;
+}
+
+.banner-text {
+    color: brown;
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer{background-color:#585650;color: #AEAEAC;}
+footer.spacer{padding: 3em 0;}
+footer h4{color: #DCDCDC;}
+footer a,footer p{line-height: 1.5em;font-size: 0.85em;color: #AEAEAC;}
+footer a:hover{color: #fff;}
+
+.copyright{background-color: #252423;padding: 0.6em 0;font-size: 0.85em;color: #7F7F7F;}
