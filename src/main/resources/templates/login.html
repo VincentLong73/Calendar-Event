@@ -34,7 +34,7 @@ button:hover {
 .cancelbtn {
   width: auto;
   padding: 10px 18px;
-  background-color: #f44336;
+  background-color: #4CAF50;
 }
 
 /* Center the image and position the close button */
@@ -119,10 +119,16 @@ span.psw {
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <button class="cancelbtn" type="submit" onclick="goBack()">Home</button>
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>
 </div>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script> 
 </body>
 </html>
