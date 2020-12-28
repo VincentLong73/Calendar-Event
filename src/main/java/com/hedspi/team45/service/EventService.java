@@ -6,7 +6,7 @@ import com.hedspi.team45.entity.Event;
 
 public interface EventService {
 	
-	Event createEvent(Event event);
+	Event createEvent(Event event,int userId);
 	
 	void moveEvent(long id);
 	
@@ -14,6 +14,6 @@ public interface EventService {
 	
 	void updateEvent(Event event);
 	
-	Iterable<Event> findBetween(LocalDateTime start, LocalDateTime end);
+	Iterable<Event> findBetweenAndUserId(LocalDateTime start, LocalDateTime end,int userId);
 
 }

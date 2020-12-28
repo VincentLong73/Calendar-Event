@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -100,17 +100,17 @@ span.psw {
 <body>
 <div class="modal">
   
-  <form class="modal-content animate" action="" method="post">
+  <form class="modal-content animate" th:action="@{afterLogin}" method="post">
     <div class="imgcontainer">
       <img src="" alt="" class="avatar">
     </div>
 
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label for="uname"><b>User Name</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" th:field = "${user.email}">
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="password" placeholder="Enter Password" name="psw" th:field = "${user.password}">
         
       <button type="submit">Login</button>
       <label>

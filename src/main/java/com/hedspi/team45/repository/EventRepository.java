@@ -16,6 +16,8 @@ import com.hedspi.team45.entity.Event;
 @Transactional
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
-	@Query("from Event e where not(e.end < :from or e.start > :to)")
-	public List<Event> findBetween(@Param("from") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDateTime start, @Param("to") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDateTime end);
+	//@Query("from Event e where not(e.end < :from or e.start > :to) and e.user.id =: id")
+	@Query("SELECT e FROM Event e where not(e.end < :from or e.start > :to) and e.user.id =:user_id")
+	//public List<Event> BetweenUserId(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDateTime start, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDateTime end,int user_id);
+	public List<Event> BetweenUserId(@Param("from") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDateTime start, @Param("to") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDateTime end,@Param("user_id") int user_id);
 }

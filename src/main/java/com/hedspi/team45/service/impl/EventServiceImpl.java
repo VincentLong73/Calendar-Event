@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hedspi.team45.entity.Event;
 import com.hedspi.team45.repository.EventRepository;
+import com.hedspi.team45.repository.UserRepository;
 import com.hedspi.team45.service.EventService;
 
 @Service
@@ -14,14 +15,17 @@ public class EventServiceImpl implements EventService{
 	
 	@Autowired
 	private EventRepository eventRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
-	public Event createEvent(Event event) {
+	public Event createEvent(Event event,int userId) {
 		Event e = new Event();
         e.setStart(event.getStart());
         e.setEnd(event.getEnd());
         e.setText(event.getText());
         e.setColor(event.getColor());
+        e.setUser(userRepository.getOne(userId));
 
         eventRepository.save(e);
         return e;
@@ -43,9 +47,9 @@ public class EventServiceImpl implements EventService{
 	}
 
 	@Override
-	public Iterable<Event> findBetween(LocalDateTime start, LocalDateTime end) {
+	public Iterable<Event> findBetweenAndUserId(LocalDateTime start, LocalDateTime end, int userId) {
 		
-		return eventRepository.findBetween(start, end);
+		return eventRepository.BetweenUserId(start, end, userId);
 	}
 
 	@Override
