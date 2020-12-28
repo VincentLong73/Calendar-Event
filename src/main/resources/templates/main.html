@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="@{/css/main.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/icons/style.css}">
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" >
 
 </head>
 <body>
@@ -25,6 +25,7 @@
 		<div style="flex-grow: 1">
 			<div id="dp"></div>
 		</div>
+		<input type="hidden" th:value="${idUser}" id="id" th:name="id"/>
 	</div>
 
 	<!-- DayPilot library -->
@@ -32,13 +33,16 @@
 
 	<script>
 		var nav = new DayPilot.Navigator("nav");
+		var idUser = document.getElementById("id").value;
+		var urlGet = "http://localhost:8282/api/events/" +idUser;
+		var urlCreate = "http://localhost:8282/api/events/create/" +idUser;
 		nav.showMonths = 3;
 		nav.skipMonths = 3;
 		nav.selectMode = "week";
 		nav.onTimeRangeSelected = function(args) {
 			dp.startDate = args.day;
 			dp.update();
-			dp.events.load("http://localhost:8282/api/events");
+			dp.events.load(urlGet);
 		};
 		nav.init();
 
@@ -60,7 +64,7 @@
 							text : modal.result
 						};
 						DayPilot.Http.ajax({
-							url : 'http://localhost:8282/api/events/create',
+							url : urlCreate,
 							data : params,
 							success : function(ajax) {
 								var data = ajax.data;
@@ -190,6 +194,6 @@
 			});
 		}
 	</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" ></script>
 </body>
 </html>

@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calander-Event</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Calendar-Event</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
             <a class="navbar-brand ml-3 mr-auto" href="#">Calendar-Event</a>
-            <form class="form-inline my-2 my-lg-0 ">
-                <button class="btn btn-outline-success my-2 my-sm-0 mr-1" type="submit" formaction="./login.html">Login</button>
-                <button class="btn btn-outline-success my-2 my-sm-0 ml-1" type="submit" formaction="./register.html">Register</button>
-            </form>
+
+            <ul>
+          	  <li class="active"><a th:href="@{/}">Home</a></li>
+	          <li><a href="#contact">Contact Us</a></li>
+	          <li><a th:href="@{/login}" >Login</a></li>
+        </ul>
     </nav>
     </header>
 
     <section class="banner">
         <div class="banner">
-            <img src="../static/image/calendar-in-docs-sheets-header.jpg" alt="banner-bg" class="" style="width:1348px;height:600px; opacity: 0.6;">
+            <img src="/image/calendar-in-docs-sheets-header.jpg" alt="banner-bg" class="" style="width:1348px;height:600px; opacity: 0.6;">
             <div class="text-center banner-text">
                 <h2 class="section-heading text-uppercase" style="font-size: 70px;">Calendar Event</h2>
                 <p>Welcome to your Calender. Nice to meet you!</p>
@@ -34,7 +36,7 @@
             <div class="col-sm-6">
               <div class="card">
                 <div class="card-body">
-                  <img src="../static/image/login.png" alt="" style="height: 145px;">
+                  <img src="/image/login.png" alt="" style="height: 145px;">
                   <p class="card-text">You already have an account?</p>
                   <a href="#" class="btn btn-primary">Log in!</a>
                 </div>
@@ -43,7 +45,7 @@
             <div class="col-sm-6">
               <div class="card">
                 <div class="card-body">
-                  <img src="../static/image/register.png" alt="">
+                  <img src="/image/register.png" alt="">
                   <p class="card-text">You don't have an account?</p>
                   <a href="#" class="btn btn-primary">Register now!</a>
                 </div>
@@ -83,8 +85,8 @@
             <p >Designed by team 45 - Hedspi</p>
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
