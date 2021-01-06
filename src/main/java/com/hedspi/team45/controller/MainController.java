@@ -2,15 +2,13 @@ package com.hedspi.team45.controller;
 
 import java.time.LocalDateTime;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,49 +21,58 @@ import com.hedspi.team45.service.impl.EventServiceImpl;
 //@Controller
 public class MainController {
 
-    @Autowired
-    private EventServiceImpl eventService;
+	@Autowired
+	private EventServiceImpl eventService;
 
-    @RequestMapping("/api")
-    public String home() {
-        return "index";
-    }
+//	@RequestMapping("/index")
+//	public String home() {
+//		return "welcome";
+//	}
 
-    @GetMapping("/api/events")
+    @GetMapping("/api/events/{userId}")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime start, @RequestParam("end") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime end) {
-        return eventService.findBetween(start, end);
+    Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime start, @RequestParam("end") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime end,
+    	 @PathVariable("userId") int userId) {
+    	System.out.println("42 : "+userId);
+        return eventService.findBetweenAndUserId(start, end,userId);
     }
 
-    @PostMapping("/api/events/create")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @Transactional
-    Event createEvent(@RequestBody Event event) {
+//	@GetMapping("/api/events")
+//	@JsonSerialize(using = LocalDateTimeSerializer.class)
+//	Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime start,
+//			@RequestParam("end") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime end) {
+//
+//		return eventService.findBetweenAndUserId(start, end, id);
+//	}
 
-        return eventService.createEvent(event);
-    }
+	@PostMapping("/api/events/create/{userId}")
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	//@Transactional
+	Event createEvent(@RequestBody Event event,@PathVariable("userId") int userId) {
+		System.out.println("58 : "+ userId);
 
-    @PostMapping("/api/events/move")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @Transactional
-    public void moveEvent(@RequestBody Event event) {
-        eventService.moveEvent(event.getId());
-    }
-    
-    @PostMapping("/api/events/update")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @Transactional
-    public void deleteEvent(@RequestBody Event event) {
-        eventService.updateEvent(event);
-    }
+		return eventService.createEvent(event, userId);
+	}
 
-    @PostMapping("/api/events/setColor")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @Transactional
-    public void setColor( @RequestBody Event event) {
-      eventService.setColor(event.getId(), event.getColor());
-    }
+	@PostMapping("/api/events/move")
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	//@Transactional
+	public void moveEvent(@RequestBody Event event) {
+		eventService.moveEvent(event.getId());
+	}
 
+	@PostMapping("/api/events/update")
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	//@Transactional
+	public void deleteEvent(@RequestBody Event event) {
+		eventService.updateEvent(event);
+	}
 
+	@PostMapping("/api/events/setColor")
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	//@Transactional
+	public void setColor(@RequestBody Event event) {
+		eventService.setColor(event.getId(), event.getColor());
+	}
 
 }
