@@ -58,6 +58,7 @@ public class UserController {
 			return "redirect:/login";
 		}
 
+
 		String accessToken = googleUtils.getToken(code);
 
 		User user = googleUtils.getUserInfo(accessToken);
