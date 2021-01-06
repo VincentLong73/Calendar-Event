@@ -43,6 +43,9 @@ public class UserController {
 		return "register";
 
 	}
+    
+    //New register method
+
     @GetMapping(value = "/index")
 	public String index(Model model) {
     	//int idUser = 0;
