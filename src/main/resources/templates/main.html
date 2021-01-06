@@ -16,11 +16,9 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand ml-3" href="#">Calendar-Event</a>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
-            <a class="navbar-brand ml-3 mr-auto" href="#">Calendar-Event</a>
-
-            <ul>
-          	  <li class="active"><a th:href="@{/}">Home</a></li>
-	          <li><a th:href="@{/logout}" >Logout</a></li>
+        <ul class="navbar-nav navbar-right">
+          	  <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+	          <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
         </ul>
     </nav>
 </nav>
@@ -42,8 +40,8 @@
 	<script>
 		var nav = new DayPilot.Navigator("nav");
 		var idUser = document.getElementById("id").value;
-		var urlGet = "http://localhost:8282/api/events/" +idUser;
-		var urlCreate = "http://localhost:8282/api/events/create/" +idUser;
+		var urlGet = "http://localhost:8585/api/events/" +idUser;
+		var urlCreate = "http://localhost:8585/api/events/create/" +idUser;
 		nav.showMonths = 3;
 		nav.skipMonths = 3;
 		nav.selectMode = "week";
@@ -96,7 +94,7 @@
 						id : args.e.id()
 					};
 					DayPilot.Http.ajax({
-						url : 'http://localhost:8383/api/events/move',
+						url : 'http://localhost:8585/api/events/move',
 						data : params,
 						success : function(ajax) {
 							dp.message("Event deleted");
@@ -113,7 +111,7 @@
 				end : args.newEnd.toString()
 			};
 			DayPilot.Http.ajax({
-				url : 'http://localhost:8282/api/events/update',
+				url : 'http://localhost:8585/api/events/update',
 				data : params,
 				success : function(ajax) {
 					dp.message("Event moved");
@@ -129,7 +127,7 @@
 				end : args.newEnd.toString()
 			};
 			DayPilot.Http.ajax({
-				url : 'http://localhost:8282/api/events/update',
+				url : 'http://localhost:8585/api/events/update',
 				data : params,
 				success : function(ajax) {
 					dp.message("Event resized");
@@ -192,7 +190,7 @@
 				color : color
 			};
 			DayPilot.Http.ajax({
-				url : 'http://localhost:8282/api/events/setColor',
+				url : 'http://localhost:8585/api/events/setColor',
 				data : params,
 				success : function(ajax) {
 					e.data.color = color;
