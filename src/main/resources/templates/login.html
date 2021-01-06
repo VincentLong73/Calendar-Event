@@ -2,133 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #4CAF50;
-}
-
-/* Center the image and position the close button */
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-  position: relative;
-}
-
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
-
-.container {
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-/* The Modal (background) */
-.modal {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 60px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button (x) */
-.close {
-  position: absolute;
-  right: 25px;
-  top: 0;
-  color: #000;
-  font-size: 35px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: red;
-  cursor: pointer;
-}
-</style>
+<link type="text/css" th:href="@{/css/login.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
 </head>
 <body>
-<div class="modal">
-  
-  <form class="modal-content animate" th:action="@{afterLogin}" method="post">
-    <div class="imgcontainer">
-      <img src="" alt="" class="avatar">
-    </div>
+	<div class="container">
+		<form class="modal-content animate" th:action="@{afterLogin}"
+			method="post" id="form_login">
+			<div class="imgcontainer">
+				<img th:src="@{/image/login.png}" alt="login image" class="center">
+			</div>
 
-    <div class="container">
-      <label for="uname"><b>User Name</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" th:field = "${user.email}">
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" th:field = "${user.password}">
-        
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button class="cancelbtn" type="submit" onclick="goBack()">Home</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
+			<div class="container">
+				<label for="uname"><b>Email</b></label> 
+				<input type="text" placeholder="Enter Email" name="email" id="email" th:field="${user.email}" /><br>
+					<span id="email_error"></span> 
+					<br>
+					
+					<label for="psw"><b>Password</b></label> 
+					<input type="password" placeholder="Enter Password" name="password" id="password" th:field="${user.password}" /><br>
+					<span id="password_error"></span>
+					<br>
+				<button type="submit" id="login" name="login">Login</button> 
+				<br>
+				<br>
+				
+				<a class="btn btn-outline-danger" role="button" aria-pressed="true" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8282/login-google&response_type=code
+		&client_id=376026133824-jvvrrkrtfnd4vekuu5k310okplu7525q.apps.googleusercontent.com&approval_prompt=force">Login With Gmail</a>
+				<a class="btn btn-outline-primary" role="button" aria-pressed="true" th:href="@{/}">Home</a>
+				<th:block th:if="${result != null}">
+   			<div class="alert alert-success center" role="alert">
+				<p th:text="${result}"></p>
+			</div>
+		</th:block>
+			</div>
+		</form>
+<input type="hidden" th:value="${methodLogin}" id="methodLogin" th:name="methodLogin"/>
 </div>
-
-<script>
-function goBack() {
-  window.history.back();
-}
-</script> 
+<script src="js/login/login.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 </body>
 </html>

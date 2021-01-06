@@ -15,5 +15,6 @@ public interface UserService {
 	//void applyNewPassword(User user) throws SQLException;			//Cap nhat mat khau cho nguoi dung va admin gui mail thong bao
 	void editUser(User user) throws SQLException, ParseException;	//Thay doi thong tin nguoi dung(nguoi dung)
 	User getUser(int id) throws SQLException;						//Lay thong tin nguoi dung (nguoi dung)
+	boolean checkEmailExist(String email);
 	
 }

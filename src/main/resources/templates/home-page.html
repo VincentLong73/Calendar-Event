@@ -4,22 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar-Event</title>
-    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
-            <a class="navbar-brand ml-3 mr-auto" href="#">Calendar-Event</a>
 
-            <ul>
-          	  <li class="nav-item "><a th:href="@{/}" class="nav-link">Home</a></li>
-	          <li class="nav-item "><a href="#contact" class="nav-link">Contact Us</a></li>
-	          <li class="nav-item "><a th:href="@{/login}" class="nav-link" >Login</a></li>
-        </ul>
-    </nav>
-    </header>
-
+<header >
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex row" >
+  <a class="navbar-brand col-sm-8" href="#">Calendar-Event</a>
+  <div class="collapse navbar-collapse col-sm-4" id="navbarNavDropdown">
+    <ul class="navbar-nav row">
+    <li class= "col-sm-3"></li>
+    <li class="nav-item active col-sm-4">
+        <a class="nav-link" href="#">Contact Us</a>
+      </li>
+     <li class="nav-item active col-sm-2">
+        <a class="nav-link" th:href="@{/login}">Login</a>
+      </li>
+      <li class="nav-item col-sm-2">
+        <a th:href="@{/register}" class="nav-link" >Register</a>
+      </li>
+      <li class= "col-sm-1"></li>
+    </ul>
+  </div>
+  </nav>
+</header>
     <section class="banner">
         <div class="banner">
             <img src="/image/calendar-in-docs-sheets-header.jpg" alt="banner-bg" class="" style="width:1348px;height:600px; opacity: 0.6;">

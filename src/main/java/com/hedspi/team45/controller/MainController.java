@@ -18,16 +18,11 @@ import com.hedspi.team45.entity.Event;
 import com.hedspi.team45.service.impl.EventServiceImpl;
 
 @RestController
-//@Controller
 public class MainController {
 
 	@Autowired
 	private EventServiceImpl eventService;
 
-//	@RequestMapping("/index")
-//	public String home() {
-//		return "welcome";
-//	}
 
     @GetMapping("/api/events/{userId}")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -36,14 +31,6 @@ public class MainController {
     	System.out.println("42 : "+userId);
         return eventService.findBetweenAndUserId(start, end,userId);
     }
-
-//	@GetMapping("/api/events")
-//	@JsonSerialize(using = LocalDateTimeSerializer.class)
-//	Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime start,
-//			@RequestParam("end") @DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime end) {
-//
-//		return eventService.findBetweenAndUserId(start, end, id);
-//	}
 
 	@PostMapping("/api/events/create/{userId}")
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
