@@ -5,35 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-
-    <link rel="stylesheet" th:href="@{/static/css/register.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
         <div class="container">
           <h1>Register</h1>
+          <th:block th:if="${result != null}">
+   			<div class="alert alert-success center" role="alert">
+				<p th:text="${result}"></p>
+			</div>
+		</th:block>
+          <form class="modal-content animate" th:action="@{afterRegister}"
+			method="post" id="form_register">
+			<div class="container">
           <p>Please fill in this form to create an account.</p>
-          <a href="./home-page.html">Home</a>
           <hr>
       
           <label for="email"><b>Email</b></label>
           <input type="text" placeholder="Enter Email" name="email" id="email" required>
+          <span id="email_error"></span>
+          
+          <label for="userName"><b>UserName</b></label>
+          <input type="text" placeholder="User Name" name="userName" id="username" required>
+          <span id="username_error"></span>
       
           <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+          <input type="password" placeholder="Enter Password" name="password" id="password" required>
+          <span id="password_error"></span>
       
           <label for="psw-repeat"><b>Repeat Password</b></label>
-          <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+          <input type="password" placeholder="Repeat Password" name="psw-repeat" id="re_password" required>
+          <span id="re_password_error"></span>
           <hr>
       
           <button type="submit" class="registerbtn">Register</button>
+          </div>
+          </form>
         </div>
       
         <div class="container signin">
-          <p>Already have an account? <a href="./login.html">Sign in</a>.</p>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+          <p>Already have an account? <a th:href="@{/login}">Log in</a>.</p>  
+</div>
+<script src="js/register/register.js"></script>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
-
       </body>
 </html>

@@ -29,8 +29,6 @@ public class User implements Serializable{/**
 	private String userName;
 	@Column(name="email")
 	private String email;
-	@Column(name="phone")
-	private String phone;
 	@Column(name="password")
 	private String password;
 	@Column(name="active")

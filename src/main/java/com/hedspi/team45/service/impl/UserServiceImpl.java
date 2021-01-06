@@ -40,7 +40,6 @@ public class UserServiceImpl implements UserService{
 				user.setActive(true);
 				user.setEmail(userModel.getEmail());
 				user.setPassword(userModel.getPassword());
-				user.setPhone(userModel.getPhone());
 				user.setUserName(userModel.getUserName());
 				
 				userRepository.saveAndFlush(user);
@@ -63,7 +62,6 @@ public class UserServiceImpl implements UserService{
 		User user = userRepository.findByEmail(userModel.getEmail());
 		user.setEmail(userModel.getEmail());
 		user.setPassword(userModel.getPassword());
-		user.setPhone(userModel.getPhone());
 		user.setUserName(userModel.getUserName());
 
 		userRepository.save(user);
@@ -88,10 +86,16 @@ public class UserServiceImpl implements UserService{
 		User userReturn = new User();
 		userReturn.setId(userTmp.getId());
 		userReturn.setEmail(userTmp.getEmail());
-		userReturn.setPhone(userTmp.getPhone());
 		userReturn.setUserName(userTmp.getUserName());
 		userReturn.setActive(userTmp.isActive());
 		return userReturn;
+	}
+
+	@Override
+	public boolean checkEmailExist(String email) {
+		if(userRepository.findByEmail(email) != null)
+			return true;
+		return false;
 	}
 
 }
